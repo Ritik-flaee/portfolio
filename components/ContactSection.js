@@ -1,40 +1,46 @@
 'use client';
 import { motion } from 'framer-motion';
-import Magnetic from './Magnetic';
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="section" style={{ paddingBottom: '160px' }}>
-      <style>{`
-        .contact-wrap { text-align: center; max-width: 600px; margin: 0 auto; }
-        .contact-cta { font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); font-weight: 800; color: var(--foreground); letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 40px; }
-        .contact-cta span { color: var(--accent); }
-        .contact-details { display: flex; flex-direction: column; gap: 24px; align-items: center; }
-        .contact-link { font-family: var(--font-mono); font-size: 14px; color: var(--zinc-500); transition: color 0.3s; }
-        .contact-link:hover { color: var(--accent); }
-      `}</style>
+    <section id="contact" className="section-padding py-40 bg-white text-black rounded-[40px] m-6 text-center overflow-hidden relative">
+      <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent pointer-events-none" />
       
-      <motion.div 
-        className="contact-wrap"
+      <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        className="relative z-10"
       >
-        <div className="section-tag">04 / Ready to Scale?</div>
-        <h2 className="contact-cta">Let's build your next <br/> <span>Shopify app</span>.</h2>
-        
-        <div className="contact-details">
-          <Magnetic>
-            <a href="mailto:ritikawachat@gmail.com" className="btn-primary" style={{ padding: '16px 40px', fontSize: '16px' }}>
-              Start a Conversation
-            </a>
-          </Magnetic>
-          
-          <div style={{ marginTop: '40px', display: 'flex', gap: '32px' }}>
-            <Magnetic><a href="mailto:ritikawachat@gmail.com" className="contact-link">ritikawachat@gmail.com</a></Magnetic>
-            <Magnetic><a href="tel:+919130164374" className="contact-link">+91 9130 164 374</a></Magnetic>
-            <Magnetic><a href="https://github.com/Ritik-flaee" target="_blank" rel="noreferrer" className="contact-link">GitHub</a></Magnetic>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-8 block">Project Inquiry</span>
+        <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-12">
+          Let's build something <br/> <span className="underline decoration-accent underline-offset-8">impactful</span> 🚀
+        </h2>
+
+        <div className="flex flex-col items-center gap-10">
+          <a 
+            href="mailto:ritikawachat@gmail.com" 
+            className="text-3xl md:text-5xl font-medium tracking-tight hover:text-accent transition-colors duration-500"
+          >
+            ritikawachat@gmail.com
+          </a>
+
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+            {[
+              { label: 'LinkedIn', href: '#' },
+              { label: 'GitHub', href: 'https://github.com/Ritik-flaee' },
+              { label: 'WhatsApp', href: 'https://wa.me/919130164374' }
+            ].map(link => (
+              <a 
+                key={link.label}
+                href={link.href}
+                className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 hover:text-black transition-colors"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
       </motion.div>

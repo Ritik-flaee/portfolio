@@ -1,75 +1,66 @@
 'use client';
 import { motion } from 'framer-motion';
-import Magnetic from './Magnetic';
 
 export default function HeroSection() {
   return (
-    <section className="section" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: '160px' }}>
-      <style>{`
-        .hero-value {
-          max-width: 800px;
-        }
-        .hero-role {
-          font-family: var(--font-mono);
-          font-size: 12px;
-          color: var(--accent);
-          letter-spacing: 0.15em;
-          margin-bottom: 24px;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          text-transform: uppercase;
-        }
-        .hero-role::after {
-          content: '';
-          height: 1px;
-          width: 40px;
-          background: var(--accent);
-        }
-        .hero-desc {
-          max-width: 540px;
-          font-size: 18px;
-          line-height: 1.7;
-          color: var(--zinc-500);
-          margin-top: 32px;
-          font-weight: 300;
-        }
-        .hero-desc strong { color: var(--foreground); font-weight: 500; }
-        .hero-ctas {
-          margin-top: 48px;
-          display: flex;
-          gap: 24px;
-          align-items: center;
-        }
-      `}</style>
+    <section className="relative min-h-screen flex flex-col justify-center section-padding overflow-hidden">
+      {/* Background Decorative Element */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
       
       <motion.div
-        className="hero-value"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+        className="relative z-10 max-w-4xl"
       >
-        <div className="hero-role">Shopify App Developer</div>
-        <h1 className="title-large">
-          I build high-performance <br/> 
-          <em style={{ fontStyle: 'normal', color: 'var(--accent)' }}>Shopify Apps</em> that 
-          increase revenue.
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="flex items-center gap-2 mb-8 text-accent font-mono text-sm tracking-widest uppercase"
+        >
+          <span className="w-8 h-px bg-accent" />
+          Senior Shopify Expert
+        </motion.div>
+
+        <h1 className="title-large text-white mb-8">
+          I build <span className="text-accent underline decoration-accent/20 underline-offset-8">Shopify Apps</span> <br/>
+          that increase revenue 🚀
         </h1>
-        <p className="hero-desc">
-          Helping brands scale through <strong>Checkout Extensibility, Shopify Functions,</strong> and robust back-end integrations. Focused on <strong>merchant ROI</strong> and developer-first architecture.
+
+        <p className="max-w-xl text-lg md:text-xl text-zinc-400 font-light leading-relaxed mb-12">
+          Backend-focused developer building <span className="text-white font-medium">scalable, high-performance apps</span> that solve complex commerce challenges and drive merchant ROI.
         </p>
-        
-        <div className="hero-ctas">
-          <Magnetic>
-            <a href="#projects" className="btn-primary">
-              See Case Studies
-              <span style={{ fontSize: '18px' }}>→</span>
-            </a>
-          </Magnetic>
-          <Magnetic>
-            <a href="#contact" className="btn-secondary">Get in Touch</a>
-          </Magnetic>
+
+        <div className="flex flex-wrap gap-6 items-center">
+          <motion.a
+            href="#projects"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn-premium bg-white text-black hover:bg-zinc-200"
+          >
+            View Projects
+          </motion.a>
+          
+          <motion.a
+            href="/3d"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn-premium border border-white/10 text-white hover:bg-white/5 flex items-center gap-2"
+          >
+            Enter 3D Experience ⚡
+          </motion.a>
         </div>
+      </motion.div>
+      
+      {/* Scroll Indicator */}
+      <motion.div 
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-20"
+      >
+        <span className="font-mono text-[10px] uppercase tracking-widest">Scroll</span>
+        <div className="w-px h-12 bg-gradient-to-b from-white to-transparent" />
       </motion.div>
     </section>
   );

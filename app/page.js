@@ -1,57 +1,74 @@
 'use client';
-import { usePortfolio } from '../components/PortfolioContext';
-import dynamic from 'next/dynamic';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
 import CaseStudyGrid from '../components/CaseStudyGrid';
 import ContactSection from '../components/ContactSection';
-import Toggle3D from '../components/Toggle3D';
 import Cursor from '../components/Cursor';
-import { AnimatePresence, motion } from 'framer-motion';
-
-const ThreeScene = dynamic(() => import('../components/ThreeScene'), { ssr: false });
+import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const { is3DMode } = usePortfolio();
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   return (
-    <main style={{ position: 'relative' }}>
+    <main className="relative bg-zinc-950 min-h-screen selection:bg-accent/40 selection:text-white">
       <Cursor />
       
       <AnimatePresence>
-        {!is3DMode && (
+        {isLoaded && (
           <motion.div
-            key="content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
           >
             <Navbar />
-            <HeroSection />
-            <AboutSection />
-            <CaseStudyGrid />
-            <ContactSection />
+            
+            {/* STAGGERED ENTRANCE */}
+            <div className="space-y-4">
+              <HeroSection />
+              
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+              >
+                <AboutSection />
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+              >
+                <CaseStudyGrid />
+              </motion.div>
+
+              <ContactSection />
+            </div>
+
+            {/* Premium Footer */}
+            <footer className="section-padding py-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+              <div className="font-display font-black text-white text-lg">
+                RA<span className="text-accent">.</span>
+              </div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-zinc-600">
+                &copy; 2026 Ritik Awachat. All rights reserved.
+              </div>
+              <div className="flex gap-8 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+                <a href="#" className="hover:text-white transition-colors">Twitter</a>
+                <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
+              </div>
+            </footer>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <div className={`scene-overlay ${is3DMode ? 'active' : ''}`} style={{ 
-        position: 'fixed', inset: 0, zIndex: 10, pointerEvents: is3DMode ? 'auto' : 'none',
-        opacity: is3DMode ? 1 : 0, transition: 'opacity 0.8s ease'
-      }}>
-        <ThreeScene />
-      </div>
-
-      <Toggle3D />
-
-      <style jsx global>{`
-        body {
-          background: ${is3DMode ? '#050505' : 'var(--background)'};
-          transition: background 0.8s ease;
-        }
-      `}</style>
     </main>
   );
 }
