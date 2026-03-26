@@ -62,8 +62,8 @@ export default function Home() {
                 &copy; 2026 Ritik Awachat. All rights reserved.
               </div>
               <div className="flex gap-8 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
-                <a href="#" className="hover:text-white transition-colors">Twitter</a>
-                <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/ritikawachat/" className="hover:text-white transition-colors" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a href="https://github.com/Ritik-flaee" className="hover:text-white transition-colors" target="_blank" rel="noreferrer">GitHub</a>
               </div>
             </footer>
           </motion.div>

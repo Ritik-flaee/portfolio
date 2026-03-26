@@ -27,7 +27,7 @@ export default function ContactSection() {
 
           <div className="flex flex-wrap justify-center gap-8 md:gap-16">
             {[
-              { label: 'LinkedIn', href: '#' },
+              { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ritikawachat/' },
               { label: 'GitHub', href: 'https://github.com/Ritik-flaee' },
               { label: 'WhatsApp', href: 'https://wa.me/919130164374' }
             ].map(link => (
