@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import { motion } from 'framer-motion';
 
 // Disable SSR for 3D components
-const Scene = dynamic(() => import('../../components/WorkspaceScene'), { 
+const Scene = dynamic(() => import('../../components/WorkspaceSceneSafe'), { 
   ssr: false,
   loading: () => <div className="h-screen w-full flex items-center justify-center bg-black text-zinc-700 font-mono text-xs tracking-widest uppercase animate-pulse">Initializing 3D Workspace...</div>
 });
