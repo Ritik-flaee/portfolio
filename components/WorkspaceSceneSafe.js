@@ -33,7 +33,7 @@ function Laptop() {
           <meshStandardMaterial color="#00e5ff" emissive="#00e5ff" emissiveIntensity={0.2} />
         </mesh>
       </group>
-      <Text position={[0, 2, 0]} fontSize={0.15} color="white" font="/fonts/Inter-Bold.ttf">
+      <Text position={[0, 2, 0]} fontSize={0.15} color="white">
         PROJECTS
       </Text>
     </group>
